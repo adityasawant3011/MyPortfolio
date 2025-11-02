@@ -43,15 +43,43 @@ const scrollActive = () =>{
 window.addEventListener('scroll', scrollActive)
 
 /*===== SCROLL REVEAL ANIMATION =====*/
+/* Scroll reveal animations work perfectly with the light textured background */
+/* Elements elegantly fade in from top with glass cards appearing smoothly */
 const sr = ScrollReveal({
     origin: 'top',
     distance: '60px',
     duration: 2000,
     delay: 200,
-//     reset: true
+    // reset: true
 });
 
-sr.reveal('.home__data, .about__img, .skills__subtitle, .skills__text',{}); 
-sr.reveal('.home__img, .about__subtitle, .about__text, .skills__img',{delay: 400}); 
-sr.reveal('.home__social-icon',{ interval: 200}); 
-sr.reveal('.skills__data, .work__img, .contact__input',{interval: 200}); 
+// Section titles
+sr.reveal('.section-title', {delay: 100}); 
+
+// Home section
+sr.reveal('.home__data', {delay: 200}); 
+sr.reveal('.home__social-icon', {interval: 200}); 
+sr.reveal('.home__img', {delay: 400}); 
+
+// About section
+sr.reveal('.about__img', {delay: 200}); 
+sr.reveal('.about__text-content', {delay: 300}); 
+sr.reveal('.about__objective', {delay: 400}); 
+
+// Skills section
+sr.reveal('.skills__subtitle', {delay: 200}); 
+sr.reveal('.skills__text', {delay: 300}); 
+sr.reveal('.skills__list li', {interval: 200}); 
+sr.reveal('.skills__img', {delay: 400}); 
+
+// Achievements section
+sr.reveal('.achievement__item', {interval: 200}); 
+
+// Projects section
+sr.reveal('.projects__item', {interval: 200}); 
+
+// Academics section
+sr.reveal('.about__container', {delay: 200}); 
+
+// Contact section
+sr.reveal('.contact__info', {delay: 200}); 
