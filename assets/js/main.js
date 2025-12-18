@@ -30,14 +30,18 @@ const scrollActive = () =>{
   sections.forEach(current =>{
         const sectionHeight = current.offsetHeight,
               sectionTop = current.offsetTop - 58,
-              sectionId = current.getAttribute('id'),
-              sectionsClass = document.querySelector('.nav__menu a[href*=' + sectionId + ']')
-        
-        if(scrollDown > sectionTop && scrollDown <= sectionTop + sectionHeight){
-            sectionsClass.classList.add('active-link')
-        }else{
-            sectionsClass.classList.remove('active-link')
-        }                                                    
+              sectionId = current.getAttribute('id')
+
+        // Use a quoted attribute selector and guard against null
+        const sectionsClass = document.querySelector(`.nav__menu a[href*="${sectionId}"]`)
+
+        if (sectionsClass) {
+            if(scrollDown > sectionTop && scrollDown <= sectionTop + sectionHeight){
+                sectionsClass.classList.add('active-link')
+            } else {
+                sectionsClass.classList.remove('active-link')
+            }
+        }
     })
 }
 window.addEventListener('scroll', scrollActive)
@@ -83,3 +87,23 @@ sr.reveal('.about__container', {delay: 200});
 
 // Contact section
 sr.reveal('.contact__info', {delay: 200}); 
+
+/*==================== CONTACT FORM HANDLER ====================*/
+const contactForm = document.getElementById('contact-form')
+if (contactForm) {
+    contactForm.addEventListener('submit', function (e) {
+        e.preventDefault()
+
+        const name = document.getElementById('contact-name').value.trim()
+        const email = document.getElementById('contact-email').value.trim()
+        const message = document.getElementById('contact-message').value.trim()
+
+        // Build mailto link (basic fallback) - subject and body encoded
+        const subject = encodeURIComponent(`Message from ${name || 'Website Visitor'}`)
+        const body = encodeURIComponent(`Name: ${name}%0AEmail: ${email}%0A%0A${message}`)
+        const mailto = `mailto:sawantaditya458@gmail.com?subject=${subject}&body=${body}`
+
+        // Open user's mail client
+        window.location.href = mailto
+    })
+}

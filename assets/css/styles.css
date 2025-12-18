@@ -907,7 +907,10 @@ a, button, img {
   }
   .contact__details {
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 1.5rem;
   }
 }
 @media screen and (min-width: 768px) {
